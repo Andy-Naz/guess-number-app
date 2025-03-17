@@ -1,14 +1,54 @@
-import { TextInput, View } from 'react-native'
+import { TextInput, View, StyleSheet } from 'react-native'
 import PrimaryButton from '../components/PrimaryButton'
 
 const StartGameScreen = () => {
     return (
-        <View>
-            <TextInput />
-            <PrimaryButton>Reset</PrimaryButton>
-            <PrimaryButton>Confirm</PrimaryButton>
-        </View>
+        <>
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.numberInput}
+                    maxLength={2}
+                    keyboardType="number-pad"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                />
+                <PrimaryButton>Reset</PrimaryButton>
+                <PrimaryButton>Confirm</PrimaryButton>
+            </View>
+            {/* <View style={{ borderWidth: 1, borderColor: 'red', padding: 5, margin: 5 }}>
+                <TextInput placeholder="Введите текст" style={{ backgroundColor: 'lightgray' }} />
+            </View> */}
+        </>
     )
 }
+
+const styles = StyleSheet.create({
+    inputContainer: {
+        marginTop: 100,
+        marginHorizontal: 24,
+        padding: 16,
+        backgroundColor: '#4e0329',
+        borderRadius: 8,
+        //android
+        elevation: 4,
+        //iOS
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 6,
+        shadowOpacity: 0.25,
+    },
+    numberInput: {
+        // height: 50,
+        fontSize: 32,
+        borderBottomColor: '#ddb52f',
+        borderBottomWidth: 2,
+        color: '#ddb52f',
+        marginVertical: 8,
+        fontWeight: 'bold',
+        padding: 0,
+        width: 50,
+        textAlign: 'center',
+    },
+})
 
 export default StartGameScreen
