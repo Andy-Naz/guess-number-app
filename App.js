@@ -20,7 +20,11 @@ export default function App() {
                 imageStyle={styles.backgroundImage}
             >
                 <SafeAreaView style={styles.rootScreen}>
-                    {userNumber ? <GameScreen /> : <StartGameScreen onPickNumber={pickedNumberHandler} />}
+                    {userNumber ? (
+                        <GameScreen userNumber={userNumber} />
+                    ) : (
+                        <StartGameScreen onPickNumber={pickedNumberHandler} />
+                    )}
                 </SafeAreaView>
             </ImageBackground>
         </LinearGradient>
