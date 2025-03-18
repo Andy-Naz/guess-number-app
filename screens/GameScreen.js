@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Alert, StyleSheet, Text, View } from "react-native"
 import Title from "../components/ui/Title"
 import NumberContainer from "../components/game/NumberContainer"
@@ -16,11 +16,23 @@ function generateRandomBetween(min, max, exclude) {
 let minBoundary = 1
 let maxBoundary = 100
 
-const GameScreen = ({ userNumber }) => {
-    const initialGuess = generateRandomBetween(minBoundary, maxBoundary, userNumber)
+const GameScreen = ({ userNumber, onGameOver }) => {
+    const initialGuess = generateRandomBetween(1, 100, userNumber)
     const [currentGuess, setCurrentGuess] = useState(initialGuess)
 
-    console.log(currentGuess)
+    console.log("initialGuess", initialGuess)
+    console.log("currentGuess", currentGuess)
+
+    console.log("minBoundary", minBoundary)
+    console.log("maxBoundary", maxBoundary)
+
+    useEffect(() => {
+        if (currentGuess === userNumber) {
+            onGameOver()
+        }
+        console.log("userNumber", userNumber)
+    }, [currentGuess, userNumber])
+
     const nextGuessHandler = (direction) => {
         if (
             (direction === "lower" && currentGuess < userNumber) ||
@@ -35,7 +47,6 @@ const GameScreen = ({ userNumber }) => {
         } else {
             minBoundary = currentGuess + 1
         }
-        console.log(minBoundary, maxBoundary)
         const newRandomNumber = generateRandomBetween(minBoundary, maxBoundary, currentGuess)
         setCurrentGuess(newRandomNumber)
     }
@@ -47,8 +58,8 @@ const GameScreen = ({ userNumber }) => {
             <View>
                 <Text>Higher or lower?</Text>
                 <View>
-                    <PrimaryButton onPress={() => nextGuessHandler("lower")}>-</PrimaryButton>
                     <PrimaryButton onPress={() => nextGuessHandler("higher")}>+</PrimaryButton>
+                    <PrimaryButton onPress={() => nextGuessHandler("lower")}>-</PrimaryButton>
                 </View>
             </View>
         </View>
