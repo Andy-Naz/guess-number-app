@@ -5,6 +5,8 @@ import NumberContainer from "../components/game/NumberContainer"
 import PrimaryButton from "../components/ui/PrimaryButton"
 import InstructionText from "../components/ui/InstructionText"
 import Card from "../components/ui/Card"
+import Ionicons from "@expo/vector-icons/Ionicons"
+import Colors from "../constants/colors"
 
 function generateRandomBetween(min, max, exclude) {
     if (max - min <= 1) {
@@ -59,10 +61,14 @@ const GameScreen = ({ userNumber, onGameOver }) => {
                 <InstructionText extraStyles={styles.instructionText}>Higher or lower?</InstructionText>
                 <View style={styles.buttonsContainer}>
                     <View style={styles.buttonContainer}>
-                        <PrimaryButton onPress={() => nextGuessHandler("higher")}>+</PrimaryButton>
+                        <PrimaryButton onPress={() => nextGuessHandler("higher")}>
+                            <Ionicons name="add" size={24} color={Colors.standardLight} />
+                        </PrimaryButton>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <PrimaryButton onPress={() => nextGuessHandler("lower")}>-</PrimaryButton>
+                        <PrimaryButton onPress={() => nextGuessHandler("lower")}>
+                            <Ionicons name="remove" size={24} color={Colors.standardLight} />
+                        </PrimaryButton>
                     </View>
                 </View>
             </Card>
