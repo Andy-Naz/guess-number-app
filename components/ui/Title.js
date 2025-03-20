@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         color: Colors.standardLight,
         textAlign: "center",
         borderWidth: 2,
-        borderColor: Colors.accent500,
+        borderColor: Colors.standardLight,
         padding: 12,
     },
 })
